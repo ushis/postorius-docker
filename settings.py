@@ -54,7 +54,9 @@ MAILMAN_REST_API_PASS = os.getenv('MAILMAN_API_PASS', 'secret')
 
 # Application definition
 INSTALLED_APPS = (
+    'django_gravatar',
     'django_mailman3',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -63,6 +65,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     'postorius',
 )
 
@@ -100,6 +103,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_mailman3.context_processors.common',
                 'postorius.context_processors.postorius',
             ],
         },
@@ -169,9 +173,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
 
-LOGIN_URL = 'user_login'
+LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = 'list_index'
-LOGOUT_URL = 'user_logout'
+LOGOUT_URL = 'account_logout'
 
 # Compatibility with Bootstrap 3
 from django.contrib.messages import constants as messages
@@ -184,7 +188,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
@@ -198,6 +202,10 @@ SERVER_EMAIL = os.getenv('POSTORIUS_SERVER_EMAIL', 'root@localhost.local')
 # These can be set to override the defaults but are not mandatory:
 # EMAIL_CONFIRMATION_TEMPLATE = 'postorius/address_confirmation_message.txt'
 # EMAIL_CONFIRMATION_SUBJECT = 'Confirmation needed'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('POSTORIUS_EMAIL_HOST', 'localhost')
+EMAIL_PORT = os.getenv('POSTORIUS_EMAIL_PORT', '25')
 
 # You can enable logging by uncommenting the following lines
 LOGGING = {
