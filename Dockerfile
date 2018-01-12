@@ -7,8 +7,9 @@ RUN apk add --no-cache \
   py-gunicorn
 
 RUN pip2 install \
-  'mailmanclient==3.1' \
-  'postorius==1.1.0' \
+  'mailmanclient==3.1.1' \
+  'postorius==1.1.2' \
+  'django==1.11.*' \
   'whitenoise'
 
 RUN addgroup -S postorius && \
