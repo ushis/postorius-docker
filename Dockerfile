@@ -1,16 +1,17 @@
-FROM alpine:3.6
+FROM alpine:3.8
 
 RUN apk add --no-cache \
-  python2 \
-  py2-pip \
-  py2-psycopg2 \
-  py-gunicorn
+  python3 \
+  py3-pip \
+  py3-psycopg2 \
+  py3-gunicorn
 
-RUN pip2 install \
-  'mailmanclient==3.1.1' \
-  'postorius==1.1.2' \
-  'django==1.11.*' \
-  'whitenoise'
+RUN apk add --no-cache --virtual build-deps build-base python3-dev && \
+  pip3 install \
+    'mailmanclient==3.2.0' \
+    'postorius==1.2.1' \
+    'whitenoise' && \
+  apk del build-deps
 
 RUN addgroup -S postorius && \
   adduser -h /var/lib/postorius -s /bin/sh -S -D postorius postorius
@@ -19,7 +20,7 @@ WORKDIR /var/lib/postorius
 
 COPY manage.py settings.py urls.py wsgi.py ./
 
-RUN python manage.py collectstatic --noinput
+RUN python3 manage.py collectstatic --noinput
 
 USER postorius:postorius
 

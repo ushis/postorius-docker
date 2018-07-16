@@ -10,7 +10,7 @@ from postorius.views import list as list_views
 
 urlpatterns = [
     url(r'^$', list_views.list_index),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^postorius/', include('postorius.urls')),
     url(r'^listinfo/', RedirectView.as_view(url='/', permanent=True)),
