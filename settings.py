@@ -52,6 +52,8 @@ MAILMAN_REST_API_URL = os.getenv('MAILMAN_API_URL', 'http://mailman:8001')
 MAILMAN_REST_API_USER = os.getenv('MAILMAN_API_USER', 'admin')
 MAILMAN_REST_API_PASS = os.getenv('MAILMAN_API_PASS', 'secret')
 
+POSTORIUS_TEMPLATE_BASE_URL = os.getenv('POSTORIUS_TEMPLATE_BASE_URL', 'http://postorius:8000')
+
 # Application definition
 INSTALLED_APPS = (
     'django_gravatar',
