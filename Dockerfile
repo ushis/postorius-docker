@@ -8,8 +8,8 @@ RUN apk add --no-cache \
 
 RUN apk add --no-cache --virtual build-deps build-base python3-dev && \
   pip3 install \
-    'mailmanclient==3.2.0' \
-    'postorius==1.2.1' \
+    'mailmanclient==3.2.2' \
+    'postorius==1.2.4' \
     'whitenoise' && \
   apk del build-deps
 
