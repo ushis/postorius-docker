@@ -56,8 +56,9 @@ POSTORIUS_TEMPLATE_BASE_URL = os.getenv('POSTORIUS_TEMPLATE_BASE_URL', 'http://p
 
 # Application definition
 INSTALLED_APPS = (
-    'django_gravatar',
+    'postorius',
     'django_mailman3',
+    'django_gravatar',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,7 +69,6 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'postorius',
 )
 
 MIDDLEWARE = (
