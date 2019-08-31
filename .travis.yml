@@ -11,15 +11,15 @@ before_script:
   - snyk auth "${SNYK_API_TOKEN}"
 
 script:
-  - docker build -t postorius .
-  - snyk test --docker postorius
+  - docker build -t ushi/postorius .
+  - snyk test --docker ushi/postorius
 
 before_deploy:
   - if test -n "${TRAVIS_TAG}"; then
-      docker tag postorius "ushi/postorius:${TRAVIS_TAG}" &&
+      docker tag ushi/postorius "ushi/postorius:${TRAVIS_TAG}" &&
         snyk monitor --docker "ushi/postorius:${TRAVIS_TAG}";
     else
-      docker tag postorius "ushi/postorius:latest";
+      docker tag ushi/postorius "ushi/postorius:latest";
     fi
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
 
