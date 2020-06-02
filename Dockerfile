@@ -11,7 +11,7 @@ RUN apk add --no-cache --virtual build-deps build-base libffi-dev python3-dev &&
   pip3 install \
     'django~=2.2.0' \
     'mailmanclient==3.3.0' \
-    'postorius==1.3.3rc2' \
+    'postorius==1.3.3' \
     'whitenoise' && \
   apk del build-deps
 
