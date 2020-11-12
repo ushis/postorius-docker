@@ -7,10 +7,10 @@ RUN apk add --no-cache \
   py3-psycopg2 \
   py3-gunicorn
 
-RUN apk add --no-cache --virtual build-deps build-base libffi-dev python3-dev && \
+RUN apk add --no-cache --virtual build-deps build-base libffi-dev openssl-dev python3-dev && \
   pip3 install \
     'django~=2.2.0' \
-    'mailmanclient==3.3.0' \
+    'mailmanclient==3.3.1' \
     'postorius==1.3.3' \
     'whitenoise' && \
   apk del build-deps
