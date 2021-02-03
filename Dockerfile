@@ -1,11 +1,12 @@
-FROM alpine:3.10
+FROM alpine:3.12
 
 RUN apk add --no-cache \
   libffi \
   python3 \
   py3-pip \
   py3-psycopg2 \
-  py3-gunicorn
+  py3-gunicorn \
+  py3-wheel
 
 RUN apk add --no-cache --virtual build-deps build-base libffi-dev openssl-dev python3-dev && \
   pip3 install \

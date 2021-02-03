@@ -11,8 +11,7 @@ script:
 
 before_deploy:
   - if test -n "${TRAVIS_TAG}"; then
-      docker tag ushi/postorius "ushi/postorius:${TRAVIS_TAG}" &&
-        snyk monitor --docker "ushi/postorius:${TRAVIS_TAG}";
+      docker tag ushi/postorius "ushi/postorius:${TRAVIS_TAG}";
     else
       docker tag ushi/postorius "ushi/postorius:latest";
     fi
